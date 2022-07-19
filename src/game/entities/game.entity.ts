@@ -7,11 +7,11 @@ export class GameRecord extends BaseEntity {
     id: number;
     
 	//@ManyToOne(() =>User, () => User)
-	@ManyToOne(() => User, (user) => user.nickname) // id로 바꿔야함
-	left_user: User;
+	@ManyToOne(() => User, (user) => user.id) // id로 바꿔야함
+	left_user: number;
 
-    @ManyToOne(() => User, (user) => user.nickname) // id로 바꿔야함
-    right_user: User;
+    @ManyToOne(() => User, (user) => user.id) // id로 바꿔야함
+    right_user: number;
  
 	@Column()
 	left_user_score: number;

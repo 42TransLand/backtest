@@ -9,7 +9,7 @@ export class User extends BaseEntity {
     @Column({ default: 'jiholee' })
     nickname: string;
 
-    @OneToMany(() => GameRecord, (record) => record.left_user)
-    @OneToMany(() => GameRecord, (record) => record.right_user)
+    @OneToMany(() => GameRecord, (record) => record.left_user, {eager: true })
+    @OneToMany(() => GameRecord, (record) => record.right_user, {eager: true })
     records: GameRecord[];
 }

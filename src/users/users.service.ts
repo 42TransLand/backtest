@@ -11,9 +11,7 @@ export class UsersService {
 
     async signIn(nickname: string): Promise<void> {
         //const user = .create({nickname});
-        //await this.save(user);
-        
-        console.log(nickname);
+        //await this.save(user);        
         return this.userRepository.signIn(nickname);
     }
 }

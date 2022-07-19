@@ -1,3 +1,3 @@
-export class userDto {
+export class UserDto {
     nickname: string;
 }
