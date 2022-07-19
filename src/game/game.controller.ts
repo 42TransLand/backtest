@@ -1,4 +1,11 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Post } from '@nestjs/common';
+import { GameService } from './game.service';
 
-@Controller('game')
-export class GameController {}
+@Controller('games')
+export class GameController {
+	constructor(private gameService: GameService) {}
+
+    //  @Post()
+	//  createGame(@Body() )
+    
+}

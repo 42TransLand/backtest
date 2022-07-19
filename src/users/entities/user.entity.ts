@@ -1,4 +1,5 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { GameRecord } from "src/game/entities/game.entity";
 
 @Entity()
 export class User extends BaseEntity {
@@ -7,4 +8,8 @@ export class User extends BaseEntity {
 
     @Column({ default: 'jiholee' })
     nickname: string;
+
+    @OneToMany(() => GameRecord, (record) => record.left_user)
+    @OneToMany(() => GameRecord, (record) => record.right_user)
+    records: GameRecord[];
 }
