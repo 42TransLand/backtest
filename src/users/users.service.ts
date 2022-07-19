@@ -10,6 +10,8 @@ export class UsersService {
     ) { }
 
     async signIn(nickname: string): Promise<void> {
+        //const user = .create({nickname});
+        //await this.save(user);
         
         console.log(nickname);
         return this.userRepository.signIn(nickname);

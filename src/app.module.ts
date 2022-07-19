@@ -5,10 +5,13 @@ import { UsersModule } from './users/users.module';
 import { GameModule } from './game/game.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './config/typeorm.config';
+import { UserRepository } from './users/users.repository';
 
 @Module({
   imports: [UsersModule, GameModule,
-  TypeOrmModule.forRoot(typeORMConfig)],
+  TypeOrmModule.forRoot(typeORMConfig),
+ // TypeOrmModule.forFeature(UserRepository),
+],
   controllers: [AppController],
   providers: [AppService],
 })
