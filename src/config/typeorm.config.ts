@@ -8,10 +8,8 @@ export const typeORMConfig: TypeOrmModuleOptions = {
   password: '1234',
   port: 5432,
   username: 'postgres',
-  // database: 'jiho',
   database: 'test',
-  // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-
+  autoLoadEntities: true,
   entities: [User, GameRecord],
   synchronize: true,
 };

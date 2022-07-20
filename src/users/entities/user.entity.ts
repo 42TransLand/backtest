@@ -1,3 +1,4 @@
+import { GameRecord } from 'src/game/entities/game.entity';
 import {
   BaseEntity,
   Column,
@@ -5,7 +6,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { GameRecord } from 'src/game/entities/game.entity';
 
 @Entity()
 export class User extends BaseEntity {
@@ -16,6 +16,8 @@ export class User extends BaseEntity {
   nickname: string;
 
   @OneToMany(() => GameRecord, (record) => record.leftUser, { eager: true })
-  @OneToMany(() => GameRecord, (record) => record.rightUser, { eager: true })
+  @OneToMany(() => GameRecord, (record) => record.rightUser, {
+    eager: true,
+  })
   records: GameRecord[];
 }
