@@ -4,13 +4,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class UsersService {
-    constructor(
-        @InjectRepository(UserRepository)
-        private userRepository: UserRepository
-    ) { }
+  constructor(
+    @InjectRepository(UserRepository)
+    private userRepository: UserRepository,
+  ) {}
 
-    async signIn(nickname: string): Promise<void> {
-        //const user = .create({nickname});
-        return this.userRepository.signIn(nickname);
-    }
+  async signIn(nickname: string): Promise<void> {
+    // const user = .create({nickname});
+    return this.userRepository.signIn(nickname);
+  }
 }

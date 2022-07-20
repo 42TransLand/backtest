@@ -1,37 +1,46 @@
-import { User } from "src/users/entities/user.entity";
-import { BaseEntity, Column, Entity, OneToMany, ManyToOne, PrimaryGeneratedColumn, CreateDateColumn } from "typeorm";
-import { gameMode } from "../constants/game.mode.enum";
+import { gameMode } from '../constants/game.mode.enum';
+import { User } from 'src/users/entities/user.entity';
+
+import {
+  BaseEntity,
+  Column,
+  Entity,
+  OneToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+} from 'typeorm';
+
 @Entity()
 export class GameRecord extends BaseEntity {
-    @PrimaryGeneratedColumn()
-    id: number;
-    
-	//@ManyToOne(() =>User, () => User)
-	@ManyToOne(() => User, (user) => user.id) // id로 바꿔야함
-	left_user: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(() => User, (user) => user.id) // id로 바꿔야함
-    right_user: number;
- 
-	@Column()
-	left_user_score: number;
-	
-	@Column()
-	right_user_score: number;
-	
-	@Column()
-	result: number; //left_win: 1, right_win: 2
+  // @ManyToOne(() =>User, () => User)
+  @ManyToOne(() => User, (user) => user.id) // id로 바꿔야함
+  leftUser: number;
 
-    @Column()
-    type: gameMode;
+  @ManyToOne(() => User, (user) => user.id) // id로 바꿔야함
+  rightUser: number;
 
-    // @Column()
-    // mode: string;
-    
-    @CreateDateColumn()
-    create_at: Date;
+  @Column()
+  leftUserScore: number;
 
-    @CreateDateColumn()
-    update_at: Date;
+  @Column()
+  rightUserScore: number;
 
+  @Column()
+  result: number; // left_win: 1, right_win: 2
+
+  @Column()
+  type: gameMode;
+
+  // @Column()
+  // mode: string;
+
+  @CreateDateColumn()
+  createAt: Date;
+
+  @CreateDateColumn()
+  updateAt: Date;
 }

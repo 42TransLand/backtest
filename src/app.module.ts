@@ -7,9 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './config/typeorm.config';
 
 @Module({
-  imports: [UsersModule, GameModule,
-  TypeOrmModule.forRoot(typeORMConfig),
-],
+  imports: [UsersModule, GameModule, TypeOrmModule.forRoot(typeORMConfig)],
   controllers: [AppController],
   providers: [AppService],
 })

@@ -5,11 +5,8 @@ import { TypeOrmExModule } from 'src/custom/typeorm.module';
 import { GameRepository } from './game.repository';
 
 @Module({
-  imports: [
-    TypeOrmExModule.forCustomRepository([GameRepository]),
-
-  ],
+  imports: [TypeOrmExModule.forCustomRepository([GameRepository])],
   providers: [GameService],
-  controllers: [GameController]
+  controllers: [GameController],
 })
 export class GameModule {}

@@ -1,22 +1,20 @@
 import { Controller, Post, Body, Get } from '@nestjs/common';
 import { GameService } from './game.service';
 import { GameRecodDto } from './dto/game.recode.dto';
+import { UserDto } from 'src/users/dto/userdto';
 import { GameRecord } from './entities/game.entity';
 
 @Controller('games')
 export class GameController {
-	constructor(private gameService: GameService) {}
+  constructor(private gameService: GameService) {}
 
-	@Post()
-	createGame(@Body() gameRecodDto :GameRecodDto): Promise<void> {
-		return this.gameService.createGame(gameRecodDto);
-	}
+  @Post()
+  createGame(@Body() gameRecodDto: GameRecodDto): Promise<void> {
+    return this.gameService.createGame(gameRecodDto);
+  }
 
-
-	//@Get()
-	//getAllGames(): Promise<GameRecord[]> {
-        // const user = { id: 1, nickname: "plee" }
-		//this.logger.verbose(`User ${user.username} trying to get all boards`);
-			//return this.gameService.getAllGames(1);
-	//}
+  @Get()
+  getGamesByUserId(@Body() user: UserDto): Promise<GameRecord[]> {
+    return this.gameService.getGamesByUserId(user);
+  }
 }

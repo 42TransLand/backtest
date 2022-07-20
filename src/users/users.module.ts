@@ -1,15 +1,12 @@
-import { Module, DynamicModule, Provider } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { UserRepository } from './users.repository';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 import { TypeOrmExModule } from 'src/custom/typeorm.module';
 
 @Module({
-  imports: [
-    TypeOrmExModule.forCustomRepository([UserRepository]),
-
-  ],
+  imports: [TypeOrmExModule.forCustomRepository([UserRepository])],
   controllers: [UsersController],
-  providers: [UsersService]
+  providers: [UsersService],
 })
 export class UsersModule {}

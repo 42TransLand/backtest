@@ -1,3 +1,4 @@
 export class UserDto {
-    nickname: string;
+  id: number;
+  nickname: string;
 }
