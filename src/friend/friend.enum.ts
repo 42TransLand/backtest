@@ -1,5 +1,5 @@
 export enum FriendStatus {
   PENDDING = 'PENDDING',
-  FRINED = 'FRINED',
+  FRINED = 'FRIEND',
   NONE = 'NONE',
 }

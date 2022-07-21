@@ -9,7 +9,7 @@ async function bootstrap() {
   //console.log(__dirname + '/../**/*.entity.{js,ts}');
 
   const app = await NestFactory.create(AppModule);
-  await app.listen(3000);
+  await app.listen(3001);
 
   if (module.hot) {
     module.hot.accept();
