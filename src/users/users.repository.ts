@@ -8,4 +8,9 @@ export class UserRepository extends Repository<User> {
     const user = this.create({ nickname });
     await this.save(user);
   }
+
+  async findByNickname(nickname: string): Promise<User> {
+    const user: User = await this.findOneBy({ nickname });
+    return user;
+  }
 }

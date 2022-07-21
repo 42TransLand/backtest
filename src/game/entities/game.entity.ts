@@ -1,11 +1,10 @@
-import { gameMode } from '../constants/game.mode.enum';
+import { GameMode } from '../constants/game.mode.enum';
 import { User } from 'src/users/entities/user.entity';
 
 import {
   BaseEntity,
   Column,
   Entity,
-  OneToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   CreateDateColumn,
@@ -33,7 +32,7 @@ export class GameRecord extends BaseEntity {
   result: number; // left_win: 1, right_win: 2
 
   @Column()
-  type: gameMode;
+  type: GameMode;
 
   // @Column()
   // mode: string;

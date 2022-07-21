@@ -1,7 +1,7 @@
 import { CustomRepository } from '../custom/typeorm.decorator';
 import { Repository } from 'typeorm';
 import { GameRecodDto } from './dto/game.recode.dto';
-import { gameMode } from './constants/game.mode.enum';
+import { GameMode } from './constants/game.mode.enum';
 import { GameRecord } from './entities/game.entity';
 
 @CustomRepository(GameRecord)
