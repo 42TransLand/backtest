@@ -1,8 +1,4 @@
-import {
-  BadRequestException,
-  ConflictException,
-  NotFoundException,
-} from '@nestjs/common';
+import { ConflictException, NotFoundException } from '@nestjs/common';
 import { User } from 'src/users/entities/user.entity';
 import { Equal, Repository } from 'typeorm';
 import { CustomRepository } from '../custom/typeorm.decorator';
@@ -13,11 +9,19 @@ import { FriendStatus } from './friend.enum';
 @CustomRepository(Friend)
 export class FriendRepository extends Repository<Friend> {
   async requestFriend(requestor: User, receiver: User): Promise<void> {
+    // 친구 요청을 했는데, 상대방이 이 친구를 차단했다면 요청 자체가 안가도록.
+    const resultOp = await this.findRow(receiver, requestor);
+    if (resultOp.block === true) {
+      throw new ConflictException([`상대방이 차단, 요청 불가`]);
+    }
+
     const result: Friend = await this.findRow(requestor, receiver);
     if (result !== null) {
       // 예외처리 변경하기
       if (result.block === true) {
-        throw new NotFoundException([`차단된 유저 입니다.`]);
+        throw new ConflictException([
+          `차단한 유저에게 친구요청을 보내셨습니다.`,
+        ]);
       }
       if (result.status === FriendStatus.FRIEND) {
         throw new NotFoundException([`이미 친구다.`]);
@@ -41,23 +45,20 @@ export class FriendRepository extends Repository<Friend> {
     const foundUpdate: Friend = await this.findRow(requestor, receiver);
     const foundCreate: Friend = await this.findRow(receiver, requestor);
 
-    throw new NotFoundException([`error0`]);
     if (foundUpdate.status !== FriendStatus.PENDDING) {
-      throw new ConflictException([`error1`]);
-      //return;
+      // 에러 핸들링은 나중에 적절하게 MDN보고 바꾸기
+      throw new ConflictException([`요청이 오지 않았다.`]);
     }
     if (foundCreate !== null && foundCreate.block === true) {
-      throw new ConflictException([`error2`]);
-      //console.log('error');
-      //return;
+      throw new ConflictException([`차단한 유저의 친구요청을 수락하셨습니다.`]);
     }
 
     foundUpdate.status = FriendStatus.FRIEND;
     await this.save(foundUpdate);
 
     const friend = this.create({
-      requestor,
-      receiver,
+      requestor: receiver,
+      receiver: requestor,
       status: FriendStatus.FRIEND,
       block: false,
     });
