@@ -8,33 +8,41 @@ import { FriendRepository } from './friend.repository';
 export class FriendService {
   constructor(
     @InjectRepository(FriendRepository)
-    private frinedRepository: FriendRepository,
+    private FriendRepository: FriendRepository,
     private userService: UsersService,
   ) {}
 
   async requestFriend(friendDto: FriendDto): Promise<void> {
-    const { requester, responser } = friendDto;
+    const { requestor, receiver } = friendDto;
 
     // [Todo] re
-    const reqUser = await this.userService.findByNickname(requester);
-    const resUser = await this.userService.findByNickname(responser);
-    return this.frinedRepository.requestFriend(reqUser, resUser);
+    const reqUser = await this.userService.findByNickname(requestor);
+    const resUser = await this.userService.findByNickname(receiver);
+    return this.FriendRepository.requestFriend(reqUser, resUser);
   }
 
   async acceptFriend(friendDto: FriendDto): Promise<void> {
-    const { requester, responser } = friendDto;
+    const { requestor, receiver } = friendDto;
 
-    const reqUser = await this.userService.findByNickname(requester);
-    const resUser = await this.userService.findByNickname(responser);
+    const reqUser = await this.userService.findByNickname(receiver);
+    const resUser = await this.userService.findByNickname(requestor);
 
-    this.frinedRepository.acceptFriend(reqUser, resUser);
+    this.FriendRepository.acceptFriend(reqUser, resUser);
   }
 
   async rejectFriend(friendDto: FriendDto): Promise<void> {
-    const { requester, responser } = friendDto;
+    const { requestor, receiver } = friendDto;
 
-    const reqUser = await this.userService.findByNickname(responser);
-    const resUser = await this.userService.findByNickname(requester);
-    return this.frinedRepository.rejectFriend(reqUser, resUser);
+    const reqUser = await this.userService.findByNickname(receiver);
+    const resUser = await this.userService.findByNickname(requestor);
+    return this.FriendRepository.rejectFriend(reqUser, resUser);
+  }
+
+  async blockFriend(friendDto: FriendDto): Promise<void> {
+    const { requestor, receiver } = friendDto;
+
+    const reqUser = await this.userService.findByNickname(requestor);
+    const resUser = await this.userService.findByNickname(receiver);
+    return this.FriendRepository.blockFriend(reqUser, resUser);
   }
 }

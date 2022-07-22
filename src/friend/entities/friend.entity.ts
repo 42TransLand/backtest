@@ -17,10 +17,10 @@ export class Friend extends BaseEntity {
 
   // 친구요청을 보내는 사람 or 친구 수락하는 사람
   @ManyToOne(() => User, (user) => user.id)
-  requester: User;
+  requestor: User;
 
   @ManyToOne(() => User, (user) => user.id)
-  responser: User;
+  receiver: User;
 
   @Column({ default: FriendStatus.NONE })
   status: FriendStatus;

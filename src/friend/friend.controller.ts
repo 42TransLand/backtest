@@ -34,5 +34,8 @@ export class FriendController {
     return this.friendService.rejectFriend(friendDto);
   }
 
-  //@Patch()
+  @Post('block')
+  blockFriend(@Body() friendDto: FriendDto): Promise<void> {
+    return this.friendService.blockFriend(friendDto);
+  }
 }

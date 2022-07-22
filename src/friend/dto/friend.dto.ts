@@ -1,5 +1,5 @@
 export class FriendDto {
-  requester: string;
+  requestor: string;
 
-  responser: string;
+  receiver: string;
 }
