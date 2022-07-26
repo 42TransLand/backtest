@@ -27,7 +27,7 @@ export class FriendService {
     const reqUser = await this.userService.findByNickname(receiver);
     const resUser = await this.userService.findByNickname(requestor);
 
-    this.FriendRepository.acceptFriend(reqUser, resUser);
+    return this.FriendRepository.acceptFriend(reqUser, resUser);
   }
 
   async rejectFriend(friendDto: FriendDto): Promise<void> {

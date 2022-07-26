@@ -6,6 +6,7 @@ import { GameModule } from './game/game.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { typeORMConfig } from './config/typeorm.config';
 import { FriendModule } from './friend/friend.module';
+import { EventsGateway } from './events/events.gateway';
 
 @Module({
   imports: [
@@ -15,6 +16,6 @@ import { FriendModule } from './friend/friend.module';
     FriendModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, EventsGateway],
 })
 export class AppModule {}
